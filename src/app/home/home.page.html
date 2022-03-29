@@ -1,20 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-slides pager="true" [options]="slideOps">
+    <ion-slide>
+      <ion-icon name="close"></ion-icon>
+      <img src="assets/img/logo.png" alt="Platzi Music Logo">
+      <h1>Escucha tu música</h1>
+      <h2>EN CUALQUIER LUGAR</h2>
+      <p>
+        Los mejores álbunes, las mejores canciones. Escucha y comparte
+        en cualquier momento, a todas horas.
+      </p>
+      <ion-icon name="play"></ion-icon>
+    </ion-slide>
+    <ion-slide>
+      <ion-icon name="close"></ion-icon>
+      <img src="assets/img/logo.png" alt="Platzi Music Logo">
+      <h1>Disfruta de nuestro reproductor</h1>
+      <h2>DE VIDEOS INCREÍBLES</h2>
+      <p>
+        Entra la modo video de nuestro reproductor y obtén acceso a clips.
+        documentales y making offs increíbles de tu artista favorito
+      </p>
+      <ion-icon name="videocam"></ion-icon>
+    </ion-slide>
+    <ion-slide>
+      <ion-icon name="close"></ion-icon>
+      <img src="assets/img/logo.png" alt="Platzi Music Logo">
+      <h1>Accede al exclusivo</h1>
+      <h2>MODO DEPORTE</h2>
+      <p>
+        Crea una playlist basada en tu actividad física.
+        Ten reportes y acceso a lo que necesites, integrado con GPS!
+      </p>
+      <ion-icon name="bicycle"></ion-icon>
+    </ion-slide>
+    <ion-slide>
+      <ion-icon name="close"></ion-icon>
+      <img src="assets/img/logo.png" alt="Platzi Music Logo">
+      <h1>Busca nuevas canciones</h1>
+      <h2>EN LA RADIO DE TU AUTOR FAVORITO</h2>
+      <p>
+        Mira las playlist que se generan con los ritnos y generos
+        parecidos a los de autor favorito
+      </p>
+      <ion-icon name="albums"></ion-icon>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
