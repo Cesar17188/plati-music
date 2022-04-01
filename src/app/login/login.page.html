@@ -2,4 +2,42 @@
   <figure class="ion-text-center ion-padding">
     <img src="assets/img/logo.png" alt="logo platzi">
   </figure>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="loginUser(loginForm.value)">
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.email">
+        <div *ngIf="loginForm.get('email').hasError(validation.type) &&
+        (loginForm.get('email').dirty ||
+        loginForm.get('email').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.password">
+        <div *ngIf="loginForm.get('password').hasError(validation.type) &&
+        (loginForm.get('password').dirty ||
+        loginForm.get('password').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-button expand="full" shape="round" color="success" [disabled]="!loginForm.valid" type="submit">Login!
+    </ion-button>
+  </form>
 </ion-content>
+<ion-footer class="ion-text-center">
+  <ion-button expand="full"
+  shape="round"
+  fill="outline"
+  color="success">Click para registrar</ion-button>
+</ion-footer>
