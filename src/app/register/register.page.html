@@ -1,0 +1,65 @@
+<ion-content>
+  <figure class="ion-text-center ion-padding">
+    <img src="assets/img/logo.png" alt="logo platzi">
+  </figure>
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="register(registerForm.value)">
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.nombre">
+        <div *ngIf="registerForm.get('nombre').hasError(validation.type) &&
+        (registerForm.get('nombre').dirty ||
+        registerForm.get('nombre').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Apellido</ion-label>
+      <ion-input formControlName="apellido" type="text"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.apellido">
+        <div *ngIf="registerForm.get('apellido').hasError(validation.type) &&
+        (registerForm.get('apellido').dirty ||
+        registerForm.get('apellido').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.email">
+        <div *ngIf="registerForm.get('email').hasError(validation.type) &&
+        (registerForm.get('email').dirty ||
+        registerForm.get('email').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validationsMessages.password">
+        <div *ngIf="registerForm.get('password').hasError(validation.type) &&
+        (registerForm.get('password').dirty ||
+        registerForm.get('password').touched)">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    {{ errorMessage }}
+    <ion-button expand="full" shape="round" color="success" [disabled]="!registerForm.valid" type="submit">Registrar!
+    </ion-button>
+  </form>
+</ion-content>
+

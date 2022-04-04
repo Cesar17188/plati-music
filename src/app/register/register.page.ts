@@ -4,15 +4,24 @@ import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 import { AuthenticateService } from '../services/authenticate.service';
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-})
-export class LoginPage implements OnInit {
 
-  loginForm: FormGroup;
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
+})
+export class RegisterPage implements OnInit {
+
+  registerForm: FormGroup;
   validationsMessages = {
+    apellido: [
+      {type: 'required', message: 'El apellido es requerido'},
+      {type: 'minlength', message: 'El apellido es muy corto'},
+    ],
+    nombre: [
+      {type: 'required', message: 'El nombre es requerido'},
+      {type: 'minlength', message: 'Este nombre es muy corto'},
+    ],
     email: [
       {type: 'required', message: 'El email es requerido'},
       {type: 'pattern', message: 'Este no es un email valido'},
@@ -31,7 +40,15 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private storage: Storage
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      nombre: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3)
+      ])),
+      apellido: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3)
+      ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -43,22 +60,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async ngOnInit() {
-    await this.storage.create();
-  }
 
-  loginUser(credentials) {
-    this.authService.loginUser(credentials).then(ress => {
-      this.errorMessage='';
-      this.storage.set('isUserLoggedIn', true);
-      this.navCtrl.navigateForward('/home');
-    }).catch(err => {
-      this.errorMessage = err;
-    });
+  ngOnInit(): void {
   }
-
-  goToRegister() {
-    this.navCtrl.navigateForward('/register');
-  }
-
 }
