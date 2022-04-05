@@ -60,7 +60,17 @@ export class RegisterPage implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
+    this.storage.create();
+  }
+
+  register(userData) {
+    this.authService.registerUser(userData).then(() => {
+      this.goToLogin();
+    });
+  }
+
+  goToLogin() {
+    this.navCtrl.navigateBack('/login');
   }
 }
