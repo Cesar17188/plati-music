@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+import { SongsModalPage } from '../songs-modal/songs-modal.page';
 
 import { PlatziMusicService } from '../services/platzi-music.service';
 @Component({
@@ -19,20 +22,45 @@ export class HomePage {
     speed: 400
   };
   constructor(
-    private musicService: PlatziMusicService
+    private musicService: PlatziMusicService,
+    private modalController: ModalController
   ) {}
 
   ionViewDidEnter() {
     this.fetchNewReleases();
+    this.fetchArtist();
   }
 
   fetchNewReleases() {
     this.musicService.getNewreleases()
     .subscribe(release => {
-      this.artists = release.albums.items;
-      this.songs = this.artists.filter(e => e.album_type ==='single');
-      this.albums = this.artists.filter(e => e.album_type ==='album');
-      console.log(this.artists);
+      const url = release.albums.items;
+      this.songs = url.filter(e => e.album_type ==='single');
+      this.albums = url.filter(e => e.album_type ==='album');
     });
+  }
+
+  fetchArtist() {
+    this.artists = this.musicService.getArtists().items;
+  }
+
+  showSongs(artist) {
+    this.musicService.getArtistTopTracks(artist.id)
+    .subscribe(songs => {
+      this.modalSong(songs, artist);
+    }, error => {
+      console.error(error);
+    });
+  }
+
+  async modalSong(songs, artist) {
+    const modal = await this.modalController.create({
+      component: SongsModalPage,
+      componentProps: {
+        songs: songs.tracks,
+        artist: artist.name
+      }
+    });
+    return await modal.present();
   }
 }
