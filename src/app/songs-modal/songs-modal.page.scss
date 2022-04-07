@@ -1,0 +1,12 @@
+ion-avatar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20px auto;
+  align-items: center;
+}
+
+ion-avatar ion-label {
+  display: grid;
+  grid-template-rows: auto auto;
+  transform: translateX(15px);
+}

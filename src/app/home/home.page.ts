@@ -61,6 +61,6 @@ export class HomePage {
         artist: artist.name
       }
     });
-    return await modal.present();
+    return modal.present();
   }
 }
