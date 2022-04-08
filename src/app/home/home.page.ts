@@ -4,6 +4,11 @@ import { ModalController } from '@ionic/angular';
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
 
 import { PlatziMusicService } from '../services/platzi-music.service';
+
+interface Song {
+  name?: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,6 +19,9 @@ export class HomePage {
   artists: any[] = [];
   songs: any[] = [];
   albums: any[] = [];
+  song: Song = {
+    name: ''
+  };
 
   slideOps = {
     initialSlide: 2,
@@ -60,6 +68,10 @@ export class HomePage {
         songs: songs.tracks,
         artist: artist.name
       }
+    });
+
+    modal.onDidDismiss().then(dataReturned => {
+      this.song = dataReturned.data;
     });
     return modal.present();
   }
