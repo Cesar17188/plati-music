@@ -7,6 +7,7 @@ import { PlatziMusicService } from '../services/platzi-music.service';
 
 interface Song {
   name?: string;
+  playing: boolean;
 }
 
 @Component({
@@ -20,7 +21,8 @@ export class HomePage {
   songs: any[] = [];
   albums: any[] = [];
   song: Song = {
-    name: ''
+    name: '',
+    playing:false
   };
 
   slideOps = {
@@ -74,5 +76,12 @@ export class HomePage {
       this.song = dataReturned.data;
     });
     return modal.present();
+  }
+
+  play(){
+    this.song.playing=true;
+  }
+  pause(){
+    this.song.playing=false;
   }
 }
