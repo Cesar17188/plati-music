@@ -121,7 +121,7 @@ export class HomePage {
     this.song.playing=false;
   }
 
-  parseTime(time='0.00') {
+  parseTime(time: number) {
     if (time) {
       const partTime = parseInt(time.toString().split('.')[0], 10);
       let minutes = Math.floor(partTime/60).toString();
