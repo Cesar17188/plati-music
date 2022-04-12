@@ -24,4 +24,8 @@ export class PlatziMusicService {
   getArtistTopTracks(artistId) {
     return this.http.get(`${this.urlapi}/artists/${artistId}/top-tracks?country=EC`);
   }
+
+  getAlbumTracks(albumId) {
+    return this.http.get(`${this.urlapi}/albums/${albumId}/tracks?country=EC`);
+  }
 }
