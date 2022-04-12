@@ -28,7 +28,7 @@ export class HomePage {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     preview_url: ''
   };
-  currentSong: any = {};
+  currentSong: HTMLAudioElement;
   newTime: any;
 
   slideOps = {
