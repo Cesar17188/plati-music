@@ -28,4 +28,8 @@ export class PlatziMusicService {
   getAlbumTracks(albumId) {
     return this.http.get(`${this.urlapi}/albums/${albumId}/tracks?country=EC`);
   }
+
+  searchTracks(keywords) {
+    return this.http.get(`${this.urlapi}/search?q=${keywords}&type=track`);
+  }
 }

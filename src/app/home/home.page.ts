@@ -2,15 +2,9 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
+import { Song } from '../../models/song.model';
 
 import { PlatziMusicService } from '../services/platzi-music.service';
-
-interface Song {
-  name?: string;
-  playing: boolean;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  preview_url?: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -77,6 +71,7 @@ export class HomePage {
       console.error(error);
     });
   }
+
 
   async modalSong(songs, artist) {
     const modal = await this.modalController.create({
